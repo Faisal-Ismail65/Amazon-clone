@@ -76,7 +76,7 @@ class _OrdersState extends State<Orders> {
                             arguments: orders![index]);
                       },
                       child: SingleProduct(
-                        image: orders![index].product[0].images[0],
+                        image: orders![index].products[0].images[0],
                       ),
                     );
                   },

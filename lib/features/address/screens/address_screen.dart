@@ -44,12 +44,22 @@ class _AddressScreenState extends State<AddressScreen> {
       if (_addressFormKey.currentState!.validate()) {
         addressToBeUsed =
             '${_flatBuildingController.text}, ${_areaController.text}, ${_cityController.text} -  ${_pincodeController.text} ';
-        addressServices.saveUserAddress(
-            address: addressToBeUsed, context: context);
+        if (address.isEmpty) {
+          addressServices.saveUserAddress(
+              address: addressToBeUsed, context: context);
+        }
       } else {
         throw Exception("Please Enter All Values");
       }
+    } else if (address.isNotEmpty) {
+      addressToBeUsed = address;
+    } else {
+      showSnackBar(context, 'error');
     }
+    addressServices.placeOrder(
+        context: context,
+        address: addressToBeUsed,
+        totalSum: double.parse(widget.totalAmount));
   }
 
   void pay(String addressFormProvider) {
@@ -68,12 +78,11 @@ class _AddressScreenState extends State<AddressScreen> {
         if (Provider.of<UserProvider>(context).user.address.isEmpty) {
           addressServices.saveUserAddress(
               address: addressToBeUsed, context: context);
+          addressServices.placeOrder(
+              context: context,
+              address: addressToBeUsed,
+              totalSum: double.parse(widget.totalAmount));
         }
-
-        addressServices.placeOrder(
-            context: context,
-            address: addressToBeUsed,
-            totalSum: double.parse(widget.totalAmount));
       } else {
         throw Exception('Please Enter all the values');
       }

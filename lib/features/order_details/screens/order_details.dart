@@ -143,8 +143,8 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                       DateTime.fromMillisecondsSinceEpoch(
                           widget.order.orderetAt),
                     )}'),
-                    Text('Order Id:        ${widget.order.id}'),
-                    Text('Order Total:      \$${widget.order.totalPrice}'),
+                    Text('Order Id:          ${widget.order.id}'),
+                    Text('Order Total:     \$${widget.order.totalPrice}'),
                   ],
                 ),
               ),
@@ -162,11 +162,11 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    for (int i = 0; i < widget.order.product.length; i++)
+                    for (int i = 0; i < widget.order.products.length; i++)
                       Row(
                         children: [
                           Image.network(
-                            widget.order.product[i].images[0],
+                            widget.order.products[i].images[0],
                             height: 120,
                             width: 120,
                           ),
@@ -178,7 +178,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.order.product[i].name,
+                                  widget.order.products[i].name,
                                   style: const TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.bold,

@@ -5,7 +5,7 @@ import 'package:amazon_flutter/models/product.dart';
 
 class Order {
   final String id;
-  final List<Product> product;
+  final List<Product> products;
   final List<int> quantity;
   final String address;
   final String userId;
@@ -14,7 +14,7 @@ class Order {
   final double totalPrice;
   Order({
     required this.id,
-    required this.product,
+    required this.products,
     required this.quantity,
     required this.address,
     required this.userId,
@@ -26,7 +26,7 @@ class Order {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'product': product.map((x) => x.toMap()).toList(),
+      'product': products.map((x) => x.toMap()).toList(),
       'quantity': quantity,
       'address': address,
       'userId': userId,
@@ -39,15 +39,15 @@ class Order {
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
       id: map['_id'] ?? ' ',
-      product: List<Product>.from(
-        map['product']?.map(
+      products: List<Product>.from(
+        map['products']?.map(
           (x) => Product.fromMap(
             x['product'],
           ),
         ),
       ),
       quantity: List<int>.from(
-        map['product']?.map(
+        map['products']?.map(
           (x) => x['quantity'],
         ),
       ),

@@ -43,6 +43,7 @@ dependencies:
   json_serializable: ^6.5.4
   provider: ^6.0.5
   shared_preferences: ^2.0.15
+  syncfusion_flutter_charts: ^20.4.44
 
 dev_dependencies:
   flutter_lints: ^2.0.0
